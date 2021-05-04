@@ -55,7 +55,13 @@ class Hangman {
     }
 
     private func didIWin(name: String) -> Bool {
-        return lettersGuessed.elementsEqual(name)
+        for letter in name {
+            if !lettersGuessed.contains(letter) {
+                return false
+            }
+        }
+
+        return true
     }
 
     func start() -> Void {
