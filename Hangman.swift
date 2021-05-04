@@ -4,12 +4,12 @@ class Hangman {
     var availableLetters = "abcdefghijklmnopqrstuvwyxz"
     var lettersGuessed = ""
 
-    private func chooseName() -> String {
+    public func chooseName() -> String {
         let idx = Int.random(in: 0..<names.count)
         return names[idx]
     }
 
-    private func guessWord() -> String {
+    public func guessWord() -> String {
         var guess = ""
         print("Enter a guess: \(availableLetters) ", terminator: "")
         while true {
@@ -24,11 +24,11 @@ class Hangman {
         return guess
     }
 
-    private func isLetterInWord(guess: String, name: String) -> Bool {
+    public func isLetterInWord(guess: String, name: String) -> Bool {
         return name.contains(Character(guess))
     }
 
-    private func updateAvailableLetters() -> String {
+    public func updateAvailableLetters() -> String {
         var letters = ""
         for letter in availableLetters {
             if !lettersGuessed.contains(letter) {
@@ -40,7 +40,7 @@ class Hangman {
     }
 
     // TODO give it a better name
-    private func secretWord(name: String) {
+    public func secretWord(name: String) {
         var secret = ""
         for letter in name {
             if !lettersGuessed.contains(letter) {
@@ -54,7 +54,7 @@ class Hangman {
         print(secret)
     }
 
-    private func didIWin(name: String) -> Bool {
+    public func didIWin(name: String) -> Bool {
         for letter in name {
             if !lettersGuessed.contains(letter) {
                 return false
@@ -63,32 +63,4 @@ class Hangman {
 
         return true
     }
-
-    func start() -> Void {
-        let name = chooseName()
-        while tries > 0 {
-            let guess = guessWord()
-            if isLetterInWord(guess: guess, name: name) {
-                //lettersGuessed.append(guess)
-                lettersGuessed += guess
-                availableLetters = updateAvailableLetters()
-                if didIWin(name: name) {
-                    print("You won!!!")
-                    break
-                }
-                print("Good guess! still have \(tries) tries")
-            } else {
-                tries -= 1
-                print("Oops, that letter is not in my word! You still have \(tries) tries")
-            }
-
-            secretWord(name: name)
-            print()
-        }
-
-        if tries == 0 {
-            print("You lost :( no worries, you can always try again! The correct name was \(name)")
-        }
-    }
-
 }
