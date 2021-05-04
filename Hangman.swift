@@ -1,5 +1,5 @@
 class Hangman {
-    let names = ["ana", "aline", "bianca", "bruno", "carlos", "danilo"] 
+    let names = ["ana", "aline", "bianca", "bruno", "carlos", "danilo"]
     var tries = 5
     var availableLetters = "abcdefghijklmnopqrstuvwyxz"
     var lettersGuessed = ""
@@ -87,7 +87,7 @@ class Hangman {
         }
 
         if tries == 0 {
-            print("You lost :( no worries, you can always try again!")
+            print("You lost :( no worries, you can always try again! The correct name was \(name)")
         }
     }
 
