@@ -55,13 +55,7 @@ class Hangman {
     }
 
     private func didIWin(name: String) -> Bool {
-        for letter in name {
-            if !lettersGuessed.contains(letter) {
-                return false
-            }
-        }
-
-        return true
+        return lettersGuessed.elementsEqual(name)
     }
 
     func start() -> Void {
@@ -87,7 +81,7 @@ class Hangman {
         }
 
         if tries == 0 {
-            print("You lost :( no worries, tou can always try again!")
+            print("You lost :( no worries, you can always try again!")
         }
     }
 
