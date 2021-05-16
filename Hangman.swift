@@ -4,27 +4,12 @@ class Hangman {
     var availableLetters = "abcdefghijklmnopqrstuvwyxz"
     var lettersGuessed = ""
 
-    public func chooseName() -> String {
+    public func randomName() -> String {
         let idx = Int.random(in: 0..<names.count)
         return names[idx]
     }
 
-    public func guessWord() -> String {
-        var guess = ""
-        print("Enter a guess: \(availableLetters) ", terminator: "")
-        while true {
-            guess = readLine() ?? ""
-            if guess.count == 1 {
-                break
-            }
-
-            print("Please, type only one letter for your guess: ", terminator: "")
-        }
-
-        return guess
-    }
-
-    public func isLetterInWord(guess: String, name: String) -> Bool {
+    public func isGuessCorrect(guess: String, name: String) -> Bool {
         return name.contains(Character(guess))
     }
 
@@ -39,8 +24,7 @@ class Hangman {
         return letters
     }
 
-    // TODO give it a better name
-    public func secretWord(name: String) {
+    public func secretWord(name: String) -> String {
         var secret = ""
         for letter in name {
             if !lettersGuessed.contains(letter) {
@@ -51,7 +35,7 @@ class Hangman {
 
         }
 
-        print(secret)
+        return secret
     }
 
     public func didIWin(name: String) -> Bool {
